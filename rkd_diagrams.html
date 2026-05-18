@@ -226,29 +226,29 @@ graph TB
     <div class="card-title"><span class="num">2</span>启动流程——main.c</div>
     <div class="mermaid">
 flowchart TD
-    A(["main 开始"]) --> B["解析命令行参数\n-c config / -h / -v"]
+    A["main 开始"] --> B["解析命令行参数\n-c config / -h / -v"]
     B --> C["log_init\n初始化日志系统"]
-    C --> D["realpath 转绝对路径\n注意：daemonize 后会 chdir /tmp\n相对路径失效，必须提前转换"]
-    D --> E{"配置文件\n存在?"}
-    E -->|否| Z1(["exit 1"])
-    E -->|是| F["daemonize\n双重 fork 守护进程化"]
-    F --> G{"fork\n成功?"}
-    G -->|失败| Z2(["exit 1"])
-    G -->|成功| H["setup_signals\nSIGTERM / SIGINT 设 running=0\nSIGCHLD 保持 SIG_DFL"]
-    H --> I["pm_init\n初始化 ProcManager\npthread_mutex_init"]
-    I --> J["load_config\n解析配置文件\n每行调用 pm_add"]
-    J --> K{"进程数\n大于 0?"}
-    K -->|否| Z3(["exit 0\n无进程可管"])
-    K -->|是| L["pm_lock\nstart_process 启动所有进程\npm_unlock"]
-    L --> M["pthread_create\n创建监控线程\n入口 monitor_loop"]
-    M --> N["ipc_init\n创建 Unix Socket\n绑定 /tmp/rkd.sock\n创建 epoll 实例"]
-    N --> O{"ipc_init\n成功?"}
+    C --> D["realpath 转绝对路径\ndaemonize后会chdir到/tmp\n相对路径失效，必须提前转换"]
+    D --> E{"配置文件存在?"}
+    E -->|否| Z1["exit 1"]
+    E -->|是| F["daemonize\n双重fork守护进程化"]
+    F --> G{"fork成功?"}
+    G -->|失败| Z2["exit 1"]
+    G -->|成功| H["setup_signals\nSIGTERM/SIGINT → running=0\nSIGCHLD 保持SIG_DFL"]
+    H --> I["pm_init\n初始化ProcManager\npthread_mutex_init"]
+    I --> J["load_config\n解析配置文件\n每行调用pm_add"]
+    J --> K{"进程数大于0?"}
+    K -->|否| Z3["exit 0 无进程可管"]
+    K -->|是| L["pm_lock\n启动所有进程\npm_unlock"]
+    L --> M["pthread_create\n创建监控线程\n入口monitor_loop"]
+    M --> N["ipc_init\n创建Unix Socket\n绑定/tmp/rkd.sock\n创建epoll实例"]
+    N --> O{"ipc_init成功?"}
     O -->|失败| P["running=0\n等监控线程退出"]
-    O -->|是| Q[["ipc_event_loop\nepoll 主循环\n主线程阻塞在此"]]
-    Q --> R["收到退出信号\nrunning=0"]
+    O -->|是| Q[["ipc_event_loop\nepoll主循环\n主线程阻塞在此"]]
+    Q --> R["收到退出信号 running=0"]
     R --> S["pthread_join\n等监控线程结束"]
     S --> T["ipc_cleanup\npm_cleanup\nremove_pid_file\nlog_close"]
-    T --> U(["return 0"])
+    T --> U["return 0"]
     style Q fill:#1a2a3d,stroke:#7c9dff,color:#cdd6f4
     style L fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
     style F fill:#2a1f3d,stroke:#ff6b9d,color:#cdd6f4
@@ -263,17 +263,17 @@ flowchart TD
     <div class="mermaid">
 flowchart TD
     P0["原始进程\n有控制终端"]
-    P0 -->|"fork()"| F1{"fork 返回值"}
-    F1 -->|"pid 大于 0\n父进程"| E0["_exit(0)\n退出，终端控制权\n回到 shell"]
-    F1 -->|"pid == 0\n子进程1"| S1["setsid()\n创建新会话\n脱离控制终端\n成为会话组长"]
-    S1 -->|"fork()"| F2{"fork 返回值"}
-    F2 -->|"pid 大于 0\n子进程1"| E1["_exit(0)\n退出"]
-    F2 -->|"pid == 0\n子进程2"| D["最终守护进程\n非会话组长\n永远无法获取终端"]
+    P0 -->|"fork"|  F1{"fork 返回值"}
+    F1 -->|"父进程 pid大于0"| E0["_exit(0)\n退出，终端控制权\n回到 shell"]
+    F1 -->|"子进程1 pid=0"| S1["setsid\n创建新会话\n脱离控制终端\n成为会话组长"]
+    S1 -->|"fork"| F2{"fork 返回值"}
+    F2 -->|"子进程1 pid大于0"| E1["_exit(0)\n退出"]
+    F2 -->|"子进程2 pid=0"| D["最终守护进程\n非会话组长\n永远无法获取终端"]
     D --> D1["umask(0)\n清除文件创建掩码"]
-    D1 --> D2["chdir('/tmp')\n切换工作目录"]
-    D2 --> D3["stdin / stdout / stderr\n全部重定向到 /dev/null"]
-    D3 --> D4["write_pid_file()\n写入 /tmp/rkd.pid"]
-    D4 --> D5(["继续执行后续逻辑"])
+    D1 --> D2["chdir /tmp\n切换工作目录"]
+    D2 --> D3["stdin/stdout/stderr\n全部重定向到/dev/null"]
+    D3 --> D4["write_pid_file\n写入/tmp/rkd.pid"]
+    D4 --> D5["继续执行后续逻辑"]
     style P0 fill:#2a1f3d,stroke:#ff6b9d,color:#cdd6f4
     style D fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
     style E0 fill:#1a1a2a,stroke:#2e3350,color:#7f849c
@@ -293,19 +293,19 @@ flowchart TD
     <div class="card-title"><span class="num">4</span>进程状态机</div>
     <div class="mermaid">
 flowchart TD
-    INIT(["pm_add()\n加入管理"]) --> STOPPED
+    INIT["pm_add 加入管理"] --> STOPPED
 
     STOPPED["PROC_STOPPED\npid = -1"]
     RUNNING["PROC_RUNNING\npid 大于 0\n监控线程每秒轮询"]
     CRASHED["PROC_CRASHED\npid = -1\n记录崩溃时间"]
 
-    STOPPED -->|"start_process()\nfork + execvp"| RUNNING
-    RUNNING -->|"stop_process()\nSIGTERM 等3秒 SIGKILL"| STOPPED
-    RUNNING -->|"WIFEXITED 正常退出\nrestart_count 未超限\nsleep delay 后重启"| RUNNING
-    RUNNING -->|"WIFEXITED 正常退出\nrestart_count 超限"| STOPPED
-    RUNNING -->|"WIFSIGNALED\n被信号杀死"| CRASHED
-    CRASHED -->|"restart_count 未超限\nsleep restart_delay\nstart_process"| RUNNING
-    CRASHED -->|"restart_count 超限\n放弃重启"| STOPPED
+    STOPPED -->|"start_process fork+exec"| RUNNING
+    RUNNING -->|"stop_process SIGTERM→SIGKILL"| STOPPED
+    RUNNING -->|"WIFEXITED 未超限 重启"| RUNNING
+    RUNNING -->|"WIFEXITED 超限 放弃"| STOPPED
+    RUNNING -->|"WIFSIGNALED 被信号杀死"| CRASHED
+    CRASHED -->|"未超限 sleep后重启"| RUNNING
+    CRASHED -->|"超限 放弃重启"| STOPPED
 
     style RUNNING fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
     style STOPPED fill:#313552,stroke:#7c9dff,color:#cdd6f4
@@ -317,29 +317,29 @@ flowchart TD
     </div>
     <div class="mermaid">
 flowchart LR
-    subgraph STA["start_process()"]
-        s1["制作 cmd 副本\nstrtok_r 会修改原字符串"]
-        s2["build_argv()\n空格拆分为 argv 数组"]
-        s3["fork()"]
-        s4["子进程\nexecvp(argv[0], argv)\n失败则 _exit(127)"]
-        s5["父进程\n记录 pid\nstatus = RUNNING"]
+    subgraph STA["start process"]
+        s1["制作cmd副本\nstrtok_r会修改原字符串"]
+        s2["build_argv\n空格拆分为argv数组"]
+        s3["fork"]
+        s4["子进程\nexecvp argv\n失败则_exit(127)"]
+        s5["父进程\n记录pid\nstatus=RUNNING"]
         s1 --> s2 --> s3
-        s3 -->|"pid == 0"| s4
-        s3 -->|"pid 大于 0"| s5
+        s3 -->|"pid=0"| s4
+        s3 -->|"pid大于0"| s5
     end
-    subgraph STO["stop_process()"]
-        t1["kill(pid, SIGTERM)"]
-        t2{"waitpid WNOHANG\n轮询 3 秒"}
-        t3["kill(pid, SIGKILL)\nwaitpid 阻塞等待"]
-        t4["pid = -1\nstatus = STOPPED"]
+    subgraph STO["stop process"]
+        t1["kill pid SIGTERM"]
+        t2{"waitpid WNOHANG 轮询3秒"}
+        t3["kill pid SIGKILL\nwaitpid阻塞等待"]
+        t4["pid=-1\nstatus=STOPPED"]
         t1 --> t2
         t2 -->|"已退出"| t4
         t2 -->|"3秒超时"| t3 --> t4
     end
-    subgraph RES["restart_process()"]
-        r1["stop_process()"]
-        r2["sleep(restart_delay)"]
-        r3["restart_count = 0\nstart_process()"]
+    subgraph RES["restart process"]
+        r1["stop_process"]
+        r2["sleep restart_delay"]
+        r3["restart_count=0\nstart_process"]
         r1 --> r2 --> r3
     end
     style STA fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
@@ -355,39 +355,39 @@ flowchart LR
     <div class="card-title"><span class="num">5</span>IPC 模块——Unix Socket + epoll 事件循环</div>
     <div class="mermaid">
 flowchart TD
-    subgraph INIT["ipc_init() 初始化"]
-        i1["socket(AF_UNIX, SOCK_STREAM)"]
-        i2["unlink('/tmp/rkd.sock')\n删除旧文件"]
-        i3["bind('/tmp/rkd.sock')"]
-        i4["listen()"]
-        i5["epoll_create1(0)"]
+    subgraph INIT["IPC 初始化"]
+        i1["socket AF_UNIX SOCK_STREAM"]
+        i2["unlink /tmp/rkd.sock\n删除旧文件"]
+        i3["bind /tmp/rkd.sock"]
+        i4["listen"]
+        i5["epoll_create1"]
         i6["epoll_ctl ADD listen_fd EPOLLIN\n把监听fd加入epoll"]
         i1 --> i2 --> i3 --> i4 --> i5 --> i6
     end
-    subgraph LOOP["ipc_event_loop() 主循环"]
-        L0{"while\npm→running == 1"}
-        L1["epoll_wait 超时1000ms\n超时让循环检查 running 标志"]
-        L2{"返回值\nnfds"}
-        L3["errno == EINTR\n被信号打断 continue"]
-        L4{"fd 类型"}
-        L5["accept_client()\n新连接加入 epoll"]
-        L6["read_request()\n循环读满 64 字节"]
-        L7["handle_command()\npm_lock 执行命令 pm_unlock"]
-        L8["send_response()\n循环写满 128 字节"]
-        L9["remove_client()\n对端关闭或出错"]
-        L0 -->|"running=1"| L1
+    subgraph LOOP["epoll 主循环"]
+        L0{"running=1?"}
+        L1["epoll_wait 超时1000ms\n让循环能检查running标志"]
+        L2{"nfds 返回值"}
+        L3["errno=EINTR\n被信号打断 continue"]
+        L4{"fd类型"}
+        L5["accept_client\n新连接加入epoll"]
+        L6["read_request\n循环读满64字节"]
+        L7["handle_command\npm_lock 执行命令 pm_unlock"]
+        L8["send_response\n循环写满128字节"]
+        L9["remove_client\n对端关闭或出错"]
+        L0 -->|"是"| L1
         L1 --> L2
-        L2 -->|"nfds 小于 0"| L3
-        L2 -->|"nfds 大于等于 0"| L4
+        L2 -->|"小于0"| L3
+        L2 -->|"大于等于0"| L4
         L4 -->|"listen_fd"| L5
         L4 -->|"client_fd"| L6
-        L6 -->|"成功 ret=0"| L7 --> L8
-        L6 -->|"失败或关闭"| L9
+        L6 -->|"成功"| L7 --> L8
+        L6 -->|"失败"| L9
         L5 --> L0
         L8 --> L0
         L9 --> L0
         L3 --> L0
-        L0 -->|"running=0"| EXIT(["退出循环"])
+        L0 -->|"否 running=0"| EXIT["退出循环"]
     end
     INIT --> LOOP
     style LOOP fill:#1a1d27,stroke:#7c9dff,color:#cdd6f4
