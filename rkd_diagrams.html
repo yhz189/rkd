@@ -65,8 +65,9 @@
   }
   .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
   .tab-btn.active { background: var(--accent); color: #0f1117; border-color: var(--accent); font-weight: bold; }
-  .section { display: none; animation: fadeIn 0.3s ease; }
-  .section.active { display: block; }
+  .section { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+  .section.active { position: static; left: auto; opacity: 1; pointer-events: auto; animation: fadeIn 0.3s ease; }
+  .section.pre-render { position: absolute; left: -9999px; opacity: 0; display: block; }
   @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
   .card {
     background: var(--surface);
@@ -263,12 +264,12 @@ flowchart TD
     <div class="mermaid">
 flowchart TD
     P0["原始进程\n有控制终端"]
-    P0 -->|"fork"|  F1{"fork 返回值"}
-    F1 -->|"父进程 pid大于0"| E0["_exit(0)\n退出，终端控制权\n回到 shell"]
-    F1 -->|"子进程1 pid=0"| S1["setsid\n创建新会话\n脱离控制终端\n成为会话组长"]
-    S1 -->|"fork"| F2{"fork 返回值"}
-    F2 -->|"子进程1 pid大于0"| E1["_exit(0)\n退出"]
-    F2 -->|"子进程2 pid=0"| D["最终守护进程\n非会话组长\n永远无法获取终端"]
+    P0 -->|"fork"| F1{fork返回值}
+    F1 -->|"父进程"| E0["_exit 0\n退出 终端控制权\n回到shell"]
+    F1 -->|"子进程1"| S1["setsid\n创建新会话\n脱离控制终端\n成为会话组长"]
+    S1 -->|"fork"| F2{fork返回值}
+    F2 -->|"子进程1退出"| E1["_exit 0\n退出"]
+    F2 -->|"子进程2"| D["最终守护进程\n非会话组长\n永远无法获取终端"]
     D --> D1["umask(0)\n清除文件创建掩码"]
     D1 --> D2["chdir /tmp\n切换工作目录"]
     D2 --> D3["stdin/stdout/stderr\n全部重定向到/dev/null"]
@@ -638,7 +639,7 @@ flowchart TD
 
 <script>
   mermaid.initialize({
-    startOnLoad: true,
+    startOnLoad: false,
     theme: 'dark',
     themeVariables: {
       background: '#1a1d27',
@@ -668,6 +669,16 @@ flowchart TD
     },
     flowchart: { curve: 'basis', htmlLabels: true },
     sequence: { diagramMarginX: 20, diagramMarginY: 10 },
+  });
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    document.querySelectorAll('.section').forEach(s => {
+      s.classList.add('pre-render');
+    });
+    await mermaid.run();
+    document.querySelectorAll('.section').forEach(s => {
+      s.classList.remove('pre-render');
+    });
   });
 
   function show(id, btn) {
