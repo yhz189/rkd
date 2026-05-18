@@ -19,9 +19,7 @@
     --text-dim: #7f849c;
     --tag-bg: #313552;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -29,22 +27,9 @@
     padding: 40px 20px;
     line-height: 1.6;
   }
-
-  /* ── Header ── */
-  .page-header {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-  .page-header h1 {
-    font-size: 2rem;
-    color: var(--accent);
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-  }
-  .page-header p {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-  }
+  .page-header { text-align: center; margin-bottom: 48px; }
+  .page-header h1 { font-size: 2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+  .page-header p { color: var(--text-dim); font-size: 0.9rem; }
   .badge {
     display: inline-block;
     background: var(--tag-bg);
@@ -55,18 +40,15 @@
     font-size: 0.75rem;
     margin: 4px 4px 0;
   }
-
-  /* ── Nav tabs ── */
   .tabs {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 32px;
-    padding: 0 4px;
+    padding: 12px 4px;
     position: sticky;
     top: 0;
     background: var(--bg);
-    padding: 12px 4px;
     z-index: 100;
     border-bottom: 1px solid var(--border);
   }
@@ -82,22 +64,10 @@
     transition: all 0.2s;
   }
   .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .tab-btn.active {
-    background: var(--accent);
-    color: #0f1117;
-    border-color: var(--accent);
-    font-weight: bold;
-  }
-
-  /* ── Sections ── */
-  .section {
-    display: none;
-    animation: fadeIn 0.3s ease;
-  }
+  .tab-btn.active { background: var(--accent); color: #0f1117; border-color: var(--accent); font-weight: bold; }
+  .section { display: none; animation: fadeIn 0.3s ease; }
   .section.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* ── Cards ── */
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -119,8 +89,7 @@
     background: var(--accent);
     color: #0f1117;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    width: 22px; height: 22px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -128,31 +97,15 @@
     font-weight: bold;
     flex-shrink: 0;
   }
-
-  /* ── Mermaid container ── */
   .mermaid {
     background: var(--surface2);
     border-radius: 8px;
     padding: 20px;
     overflow-x: auto;
   }
-
-  /* ── Protocol box ── */
-  .proto-grid {
-    display: grid;
-    gap: 16px;
-  }
-  .proto-box {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px 20px;
-  }
-  .proto-box h4 {
-    color: var(--accent3);
-    font-size: 0.85rem;
-    margin-bottom: 12px;
-  }
+  .proto-grid { display: grid; gap: 16px; }
+  .proto-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+  .proto-box h4 { color: var(--accent3); font-size: 0.85rem; margin-bottom: 12px; }
   .proto-bytes {
     display: flex;
     border: 1px solid var(--border);
@@ -161,13 +114,7 @@
     font-size: 0.8rem;
     margin-bottom: 8px;
   }
-  .proto-bytes .field {
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
+  .proto-bytes .field { padding: 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
   .proto-bytes .field .size { color: var(--accent3); font-size: 0.7rem; }
   .proto-bytes .field .name { color: var(--text); font-weight: bold; }
   .proto-bytes .field .desc { color: var(--text-dim); font-size: 0.7rem; }
@@ -175,78 +122,34 @@
   .f2 { background: #1a2a3d; flex: 5; }
   .f3 { background: #1a3d2a; flex: 2; border-right: 1px solid var(--border); }
   .f4 { background: #2a3d1a; flex: 8; }
-
-  /* ── Key points ── */
   .key-points {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 12px;
     margin-top: 16px;
   }
-  .kp {
-    background: var(--surface2);
-    border-left: 3px solid var(--accent2);
-    border-radius: 0 6px 6px 0;
-    padding: 12px 16px;
-    font-size: 0.83rem;
-  }
+  .kp { background: var(--surface2); border-left: 3px solid var(--accent2); border-radius: 0 6px 6px 0; padding: 12px 16px; font-size: 0.83rem; }
   .kp.warn { border-left-color: var(--accent3); }
   .kp.err  { border-left-color: var(--accent4); }
   .kp strong { color: var(--accent2); display: block; margin-bottom: 4px; font-size: 0.8rem; }
   .kp.warn strong { color: var(--accent3); }
-  .kp.err strong  { color: var(--accent4); }
-
-  /* ── Interview Q&A ── */
+  .kp.err  strong { color: var(--accent4); }
   .qa-list { display: grid; gap: 16px; }
-  .qa-item {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .qa-q {
-    background: var(--tag-bg);
-    padding: 12px 18px;
-    color: var(--accent3);
-    font-size: 0.88rem;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .qa-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .qa-q { background: var(--tag-bg); padding: 12px 18px; color: var(--accent3); font-size: 0.88rem; cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; }
   .qa-q:hover { background: #3a3f5c; }
   .qa-q .arrow { transition: transform 0.2s; }
   .qa-q.open .arrow { transform: rotate(90deg); }
-  .qa-a {
-    padding: 14px 18px;
-    color: var(--text);
-    font-size: 0.85rem;
-    line-height: 1.8;
-    display: none;
-    border-top: 1px solid var(--border);
-  }
+  .qa-a { padding: 14px 18px; color: var(--text); font-size: 0.85rem; line-height: 1.8; display: none; border-top: 1px solid var(--border); }
   .qa-a.show { display: block; }
-  .qa-a code {
-    background: var(--tag-bg);
-    color: var(--accent2);
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-size: 0.82rem;
-    font-family: inherit;
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    .card { padding: 16px; }
-    .page-header h1 { font-size: 1.4rem; }
-  }
+  .qa-a code { background: var(--tag-bg); color: var(--accent2); padding: 1px 5px; border-radius: 3px; font-size: 0.82rem; font-family: inherit; }
+  @media (max-width: 600px) { .card { padding: 16px; } .page-header h1 { font-size: 1.4rem; } }
 </style>
 </head>
 <body>
 
 <div class="page-header">
-  <h1>⚙ rkd 代码逻辑可视化</h1>
+  <h1>rkd 代码逻辑可视化</h1>
   <p>RK3568 进程监控守护程序 · 代码笔记</p>
   <div style="margin-top:12px">
     <span class="badge">守护进程</span>
@@ -257,7 +160,6 @@
   </div>
 </div>
 
-<!-- Nav -->
 <div class="tabs">
   <button class="tab-btn active" onclick="show('arch',this)">① 整体架构</button>
   <button class="tab-btn" onclick="show('startup',this)">② 启动流程</button>
@@ -279,32 +181,28 @@ graph TB
     subgraph rkd["rkd 守护进程"]
         direction TB
         main["main.c\n程序入口"]
-        daemon["daemon.c\n守护进程化\nPID文件"]
-        pm["process_mgr.c\n进程生命周期\nstart/stop/restart"]
-        ipc["ipc.c\nUnix Socket\nepoll事件循环"]
-        log["log.h / log.c\n日志模块"]
-
+        daemon["daemon.c\n守护进程化 + PID文件"]
+        pm["process_mgr.c\n进程生命周期\nstart / stop / restart"]
+        ipc["ipc.c\nUnix Socket\nepoll 事件循环"]
+        log["log.c\n日志模块"]
         main -->|"daemonize()"| daemon
-        main -->|"pm_init / start_process"| pm
-        main -->|"ipc_init / ipc_event_loop"| ipc
-        main -->|"LOG_INFO / LOG_ERROR"| log
-        ipc  -->|"handle_command()\npm_lock/unlock"| pm
+        main -->|"pm_init\nstart_process"| pm
+        main -->|"ipc_init\nipc_event_loop"| ipc
+        main --> log
+        ipc  -->|"handle_command\npm_lock/unlock"| pm
         pm   --> log
         ipc  --> log
     end
-
-    conf["📄 /etc/rkd.conf\n配置文件"]
-    rkctl["🖥 rkctl\n命令行客户端"]
-    child["🔵 子进程 A\n🔵 子进程 B\n🔵 子进程 C"]
-    pidfile["📄 /tmp/rkd.pid"]
-    sock["🔌 /tmp/rkd.sock"]
-
+    conf["配置文件\n/etc/rkd.conf"]
+    rkctl["rkctl\n命令行客户端"]
+    child["子进程 A\n子进程 B\n子进程 C"]
+    pidfile["PID文件\n/tmp/rkd.pid"]
+    sock["Unix Socket\n/tmp/rkd.sock"]
     conf -->|"load_config()"| main
-    rkctl <-->|"Unix Socket\n二进制协议"| sock
+    rkctl <-->|"二进制协议"| sock
     sock <--> ipc
     pm -->|"fork + exec"| child
     daemon -->|"write_pid_file()"| pidfile
-
     style rkd fill:#1a1d27,stroke:#2e3350,color:#cdd6f4
     style main fill:#313552,stroke:#7c9dff,color:#cdd6f4
     style ipc fill:#1a2a3d,stroke:#7c9dff,color:#cdd6f4
@@ -317,7 +215,7 @@ graph TB
     <div class="key-points" style="margin-top:16px">
       <div class="kp"><strong>两个线程</strong>主线程跑 epoll 处理 IPC；监控线程跑 waitpid 轮询子进程</div>
       <div class="kp"><strong>一把锁</strong>ProcManager.lock 保护 procs[] 数组，防止两线程同时修改</div>
-      <div class="kp warn"><strong>通信方式</strong>rkctl ↔ rkd 通过 /tmp/rkd.sock（Unix Domain Socket），固定长度二进制协议</div>
+      <div class="kp warn"><strong>通信方式</strong>rkctl 通过 /tmp/rkd.sock 与 rkd 通信，固定长度二进制协议</div>
     </div>
   </div>
 </div>
@@ -328,30 +226,29 @@ graph TB
     <div class="card-title"><span class="num">2</span>启动流程——main.c</div>
     <div class="mermaid">
 flowchart TD
-    A([main 开始]) --> B[解析命令行参数\n-c config / -h / -v]
-    B --> C[log_init\n初始化日志系统]
-    C --> D[realpath 转绝对路径\n⚠ daemonize 后 chdir /tmp\n相对路径会失效]
-    D --> E{配置文件\n存在?}
-    E -->|否| Z1([exit 1])
-    E -->|是| F[daemonize\n双重 fork 守护进程化]
-    F --> G{fork\n成功?}
-    G -->|失败| Z2([exit 1])
-    G -->|成功| H[setup_signals\nSIGTERM/SIGINT → running=0\nSIGCHLD → SIG_DFL]
-    H --> I[pm_init\n初始化 ProcManager\npthread_mutex_init]
-    I --> J[load_config\n解析配置文件\npm_add 每个进程]
-    J --> K{进程数\n> 0?}
-    K -->|否| Z3([exit 0 无进程可管])
-    K -->|是| L[pm_lock\nstart_process × N\nfork+exec 启动所有进程\npm_unlock]
-    L --> M[pthread_create\n创建监控线程\nmonitor_loop]
-    M --> N[ipc_init\n创建 Unix Socket\n绑定 /tmp/rkd.sock\n创建 epoll 实例]
-    N --> O{ipc_init\n成功?}
-    O -->|失败| P[running=0\n等监控线程退出]
-    O -->|是| Q[[ipc_event_loop\nepoll 主循环\n⚡ 主线程阻塞在此]]
-    Q --> R[收到退出信号\nrunning=0]
-    R --> S[pthread_join\n等监控线程结束]
-    S --> T[ipc_cleanup\npm_cleanup\nremove_pid_file\nlog_close]
-    T --> U([return 0])
-
+    A(["main 开始"]) --> B["解析命令行参数\n-c config / -h / -v"]
+    B --> C["log_init\n初始化日志系统"]
+    C --> D["realpath 转绝对路径\n注意：daemonize 后会 chdir /tmp\n相对路径失效，必须提前转换"]
+    D --> E{"配置文件\n存在?"}
+    E -->|否| Z1(["exit 1"])
+    E -->|是| F["daemonize\n双重 fork 守护进程化"]
+    F --> G{"fork\n成功?"}
+    G -->|失败| Z2(["exit 1"])
+    G -->|成功| H["setup_signals\nSIGTERM / SIGINT 设 running=0\nSIGCHLD 保持 SIG_DFL"]
+    H --> I["pm_init\n初始化 ProcManager\npthread_mutex_init"]
+    I --> J["load_config\n解析配置文件\n每行调用 pm_add"]
+    J --> K{"进程数\n大于 0?"}
+    K -->|否| Z3(["exit 0\n无进程可管"])
+    K -->|是| L["pm_lock\nstart_process 启动所有进程\npm_unlock"]
+    L --> M["pthread_create\n创建监控线程\n入口 monitor_loop"]
+    M --> N["ipc_init\n创建 Unix Socket\n绑定 /tmp/rkd.sock\n创建 epoll 实例"]
+    N --> O{"ipc_init\n成功?"}
+    O -->|失败| P["running=0\n等监控线程退出"]
+    O -->|是| Q[["ipc_event_loop\nepoll 主循环\n主线程阻塞在此"]]
+    Q --> R["收到退出信号\nrunning=0"]
+    R --> S["pthread_join\n等监控线程结束"]
+    S --> T["ipc_cleanup\npm_cleanup\nremove_pid_file\nlog_close"]
+    T --> U(["return 0"])
     style Q fill:#1a2a3d,stroke:#7c9dff,color:#cdd6f4
     style L fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
     style F fill:#2a1f3d,stroke:#ff6b9d,color:#cdd6f4
@@ -365,19 +262,18 @@ flowchart TD
     <div class="card-title"><span class="num">3</span>双重 fork 守护进程化</div>
     <div class="mermaid">
 flowchart TD
-    P0["🖥 原始进程\n（有控制终端）"]
-    P0 -->|"fork()"| F1{fork 结果}
-    F1 -->|"pid > 0\n父进程"| E0["_exit(0)\n退出，终端控制权\n回到 shell"]
+    P0["原始进程\n有控制终端"]
+    P0 -->|"fork()"| F1{"fork 返回值"}
+    F1 -->|"pid 大于 0\n父进程"| E0["_exit(0)\n退出，终端控制权\n回到 shell"]
     F1 -->|"pid == 0\n子进程1"| S1["setsid()\n创建新会话\n脱离控制终端\n成为会话组长"]
-    S1 -->|"fork()"| F2{fork 结果}
-    F2 -->|"pid > 0\n子进程1"| E1["_exit(0)\n退出"]
-    F2 -->|"pid == 0\n子进程2"| D["✅ 最终守护进程\n非会话组长\n永远无法获取终端"]
+    S1 -->|"fork()"| F2{"fork 返回值"}
+    F2 -->|"pid 大于 0\n子进程1"| E1["_exit(0)\n退出"]
+    F2 -->|"pid == 0\n子进程2"| D["最终守护进程\n非会话组长\n永远无法获取终端"]
     D --> D1["umask(0)\n清除文件创建掩码"]
     D1 --> D2["chdir('/tmp')\n切换工作目录"]
-    D2 --> D3["stdin/stdout/stderr\n→ /dev/null"]
+    D2 --> D3["stdin / stdout / stderr\n全部重定向到 /dev/null"]
     D3 --> D4["write_pid_file()\n写入 /tmp/rkd.pid"]
-    D4 --> D5(["继续执行 main 后续逻辑"])
-
+    D4 --> D5(["继续执行后续逻辑"])
     style P0 fill:#2a1f3d,stroke:#ff6b9d,color:#cdd6f4
     style D fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
     style E0 fill:#1a1a2a,stroke:#2e3350,color:#7f849c
@@ -396,68 +292,59 @@ flowchart TD
   <div class="card">
     <div class="card-title"><span class="num">4</span>进程状态机</div>
     <div class="mermaid">
-stateDiagram-v2
-    [*] --> STOPPED : pm_add()\n初始状态
+flowchart TD
+    INIT(["pm_add()\n加入管理"]) --> STOPPED
 
-    STOPPED --> RUNNING : start_process()\nfork() + execvp()
+    STOPPED["PROC_STOPPED\npid = -1"]
+    RUNNING["PROC_RUNNING\npid 大于 0\n监控线程每秒轮询"]
+    CRASHED["PROC_CRASHED\npid = -1\n记录崩溃时间"]
 
-    RUNNING --> STOPPED : stop_process()\nSIGTERM → wait 3s → SIGKILL
+    STOPPED -->|"start_process()\nfork + execvp"| RUNNING
+    RUNNING -->|"stop_process()\nSIGTERM 等3秒 SIGKILL"| STOPPED
+    RUNNING -->|"WIFEXITED 正常退出\nrestart_count 未超限\nsleep delay 后重启"| RUNNING
+    RUNNING -->|"WIFEXITED 正常退出\nrestart_count 超限"| STOPPED
+    RUNNING -->|"WIFSIGNALED\n被信号杀死"| CRASHED
+    CRASHED -->|"restart_count 未超限\nsleep restart_delay\nstart_process"| RUNNING
+    CRASHED -->|"restart_count 超限\n放弃重启"| STOPPED
 
-    RUNNING --> RUNNING : WIFEXITED (正常退出)\nrestart_count++\n未超限 → sleep(delay) → 重启
-
-    RUNNING --> CRASHED : WIFSIGNALED\n被信号杀死\nhandle_crash()
-
-    CRASHED --> RUNNING : restart_count ≤ max_restart\nsleep(restart_delay)\nstart_process()
-
-    CRASHED --> STOPPED : restart_count > max_restart\n放弃重启
-
-    note right of RUNNING
-        pid > 0
-        status = PROC_RUNNING
-        监控线程每秒轮询
-        waitpid(WNOHANG)
-    end note
-
-    note right of CRASHED
-        pid = -1
-        status = PROC_CRASHED
-        last_crash_time 记录崩溃时间
-    end note
+    style RUNNING fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
+    style STOPPED fill:#313552,stroke:#7c9dff,color:#cdd6f4
+    style CRASHED fill:#3d1a1a,stroke:#ff6b9d,color:#cdd6f4
     </div>
-    <div class="card-title" style="margin-top:24px"><span class="num">+</span>start / stop / restart 内部流程</div>
+
+    <div class="card-title" style="margin-top:24px; border-top:1px solid var(--border); padding-top:20px">
+      <span class="num">+</span>start / stop / restart 内部流程
+    </div>
     <div class="mermaid">
 flowchart LR
-    subgraph start["start_process()"]
-        s1["制作 cmd 副本\n(strtok_r 会修改原字符串)"]
-        s2["build_argv()\n空格拆分为 argv[]"]
+    subgraph STA["start_process()"]
+        s1["制作 cmd 副本\nstrtok_r 会修改原字符串"]
+        s2["build_argv()\n空格拆分为 argv 数组"]
         s3["fork()"]
-        s4["子进程:\nexecvp(argv[0], argv)\n_exit(127) 失败时"]
-        s5["父进程:\n记录 pid\nstatus=RUNNING\nstart_time=now"]
+        s4["子进程\nexecvp(argv[0], argv)\n失败则 _exit(127)"]
+        s5["父进程\n记录 pid\nstatus = RUNNING"]
         s1 --> s2 --> s3
-        s3 -->|pid==0| s4
-        s3 -->|pid>0| s5
+        s3 -->|"pid == 0"| s4
+        s3 -->|"pid 大于 0"| s5
     end
-
-    subgraph stop["stop_process()"]
+    subgraph STO["stop_process()"]
         t1["kill(pid, SIGTERM)"]
-        t2{"waitpid(WNOHANG)\n轮询 3 秒"}
+        t2{"waitpid WNOHANG\n轮询 3 秒"}
         t3["kill(pid, SIGKILL)\nwaitpid 阻塞等待"]
-        t4["pid=-1\nstatus=STOPPED"]
+        t4["pid = -1\nstatus = STOPPED"]
         t1 --> t2
-        t2 -->|已退出| t4
-        t2 -->|超时| t3 --> t4
+        t2 -->|"已退出"| t4
+        t2 -->|"3秒超时"| t3 --> t4
     end
-
-    subgraph restart["restart_process()"]
+    subgraph RES["restart_process()"]
         r1["stop_process()"]
         r2["sleep(restart_delay)"]
-        r3["restart_count=0\nstart_process()"]
+        r3["restart_count = 0\nstart_process()"]
         r1 --> r2 --> r3
     end
-
-    style start fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
-    style stop fill:#3d1a1a,stroke:#ff6b9d,color:#cdd6f4
-    style restart fill:#1a2a3d,stroke:#7c9dff,color:#cdd6f4
+    style STA fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
+    style STO fill:#3d1a1a,stroke:#ff6b9d,color:#cdd6f4
+    style RES fill:#1a2a3d,stroke:#7c9dff,color:#cdd6f4
     </div>
   </div>
 </div>
@@ -468,54 +355,50 @@ flowchart LR
     <div class="card-title"><span class="num">5</span>IPC 模块——Unix Socket + epoll 事件循环</div>
     <div class="mermaid">
 flowchart TD
-    subgraph init["ipc_init() 初始化"]
+    subgraph INIT["ipc_init() 初始化"]
         i1["socket(AF_UNIX, SOCK_STREAM)"]
         i2["unlink('/tmp/rkd.sock')\n删除旧文件"]
         i3["bind('/tmp/rkd.sock')"]
         i4["listen()"]
         i5["epoll_create1(0)"]
-        i6["epoll_ctl(ADD, listen_fd, EPOLLIN)\n把监听fd加入epoll"]
+        i6["epoll_ctl ADD listen_fd EPOLLIN\n把监听fd加入epoll"]
         i1 --> i2 --> i3 --> i4 --> i5 --> i6
     end
-
-    subgraph loop["ipc_event_loop() 主循环"]
-        l0{{"while(pm->running)"}}
-        l1["epoll_wait(..., 1000ms)\n超时1秒，让循环能检查running"]
-        l2{返回值}
-        l3["errno==EINTR?\n被信号打断 → continue"]
-        l4{fd 类型}
-        l5["accept_client()\n新连接加入 epoll"]
-        l6["read_request()\n精确读 64 字节"]
-        l7["handle_command()\npm_lock → 执行命令 → pm_unlock"]
-        l8["send_response()\n精确写 128 字节"]
-        l9["remove_client()\n对端关闭/出错"]
-
-        l0 -->|running=1| l1
-        l1 --> l2
-        l2 -->|nfds<0| l3
-        l2 -->|nfds>=0| l4
-        l4 -->|listen_fd| l5
-        l4 -->|client_fd| l6
-        l6 -->|成功 ret=0| l7 --> l8
-        l6 -->|失败/关闭 ret!=0| l9
-        l5 --> l0
-        l8 --> l0
-        l9 --> l0
-        l3 --> l0
-        l0 -->|running=0| E(["退出循环"])
+    subgraph LOOP["ipc_event_loop() 主循环"]
+        L0{"while\npm→running == 1"}
+        L1["epoll_wait 超时1000ms\n超时让循环检查 running 标志"]
+        L2{"返回值\nnfds"}
+        L3["errno == EINTR\n被信号打断 continue"]
+        L4{"fd 类型"}
+        L5["accept_client()\n新连接加入 epoll"]
+        L6["read_request()\n循环读满 64 字节"]
+        L7["handle_command()\npm_lock 执行命令 pm_unlock"]
+        L8["send_response()\n循环写满 128 字节"]
+        L9["remove_client()\n对端关闭或出错"]
+        L0 -->|"running=1"| L1
+        L1 --> L2
+        L2 -->|"nfds 小于 0"| L3
+        L2 -->|"nfds 大于等于 0"| L4
+        L4 -->|"listen_fd"| L5
+        L4 -->|"client_fd"| L6
+        L6 -->|"成功 ret=0"| L7 --> L8
+        L6 -->|"失败或关闭"| L9
+        L5 --> L0
+        L8 --> L0
+        L9 --> L0
+        L3 --> L0
+        L0 -->|"running=0"| EXIT(["退出循环"])
     end
-
-    init --> loop
-
-    style loop fill:#1a1d27,stroke:#7c9dff,color:#cdd6f4
-    style init fill:#1a1d27,stroke:#2e3350,color:#cdd6f4
-    style l1 fill:#1a2a3d,stroke:#7c9dff,color:#cdd6f4
-    style l7 fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
+    INIT --> LOOP
+    style LOOP fill:#1a1d27,stroke:#7c9dff,color:#cdd6f4
+    style INIT fill:#1a1d27,stroke:#2e3350,color:#cdd6f4
+    style L1 fill:#1a2a3d,stroke:#7c9dff,color:#cdd6f4
+    style L7 fill:#1a3d2a,stroke:#5ef0a0,color:#cdd6f4
     </div>
     <div class="key-points" style="margin-top:16px">
-      <div class="kp"><strong>epoll vs select</strong>select O(n) 扫描全部 fd + FD_SETSIZE=1024 上限；epoll 内核维护就绪链表，O(1) 返回就绪 fd，无数量限制</div>
+      <div class="kp"><strong>epoll vs select</strong>select O(n) 扫描全部 fd，有 FD_SETSIZE=1024 上限；epoll 内核维护就绪链表，O(1) 返回就绪 fd，无数量限制</div>
       <div class="kp"><strong>1000ms 超时的作用</strong>不能无限等待，否则收到信号设完 running=0 后，epoll_wait 不返回就无法退出循环</div>
-      <div class="kp warn"><strong>read 循环保证完整收包</strong>TCP/Unix Socket 不保证一次 read 收完固定字节，必须循环读直到满 IPC_REQ_LEN=64 字节</div>
+      <div class="kp warn"><strong>read 循环保证完整收包</strong>Unix Socket 不保证一次 read 收完固定字节，必须循环读直到满 IPC_REQ_LEN=64 字节</div>
     </div>
   </div>
 </div>
@@ -526,7 +409,7 @@ flowchart TD
     <div class="card-title"><span class="num">6</span>二进制通信协议</div>
     <div class="proto-grid">
       <div class="proto-box">
-        <h4>📤 请求包（Request）— 固定 64 字节</h4>
+        <h4>请求包（Request）— 固定 64 字节</h4>
         <div class="proto-bytes">
           <div class="field f1">
             <span class="size">1 byte</span>
@@ -544,7 +427,7 @@ flowchart TD
         </div>
       </div>
       <div class="proto-box">
-        <h4>📥 响应包（Response）— 固定 128 字节</h4>
+        <h4>响应包（Response）— 固定 128 字节</h4>
         <div class="proto-bytes">
           <div class="field f3">
             <span class="size">4 bytes</span>
@@ -562,30 +445,30 @@ flowchart TD
 
     <div style="margin-top:20px">
       <div class="card-title" style="font-size:0.9rem; border:none; margin-bottom:12px; padding:0">
-        📋 rkctl 完整通信流程
+        rkctl 完整通信时序
       </div>
       <div class="mermaid">
 sequenceDiagram
-    participant C as rkctl (客户端)
-    participant S as rkd (服务端 epoll)
+    participant C as rkctl 客户端
+    participant S as rkd 服务端
 
-    C->>C: parse_cmd("start myapp")
-    C->>S: connect("/tmp/rkd.sock")
-    C->>S: write 64字节请求\n[cmd=1][name="myapp\0\0..."]
+    C->>C: 解析命令 start myapp
+    C->>S: connect /tmp/rkd.sock
+    C->>S: write 64字节请求包 cmd=1 name=myapp
     S->>S: epoll_wait 返回 client_fd 就绪
-    S->>S: read_request() 循环读满 64 字节
-    S->>S: pm_lock()
-    S->>S: handle_command(CMD_START, "myapp")
-    S->>S: start_process() → fork+exec
-    S->>S: pm_unlock()
-    S->>C: write 128字节响应\n[ret_code=0]["process myapp started, pid=1234"]
-    C->>C: recv_response() 打印消息
-    C->>S: close()
+    S->>S: read_request 循环读满64字节
+    S->>S: pm_lock 加锁
+    S->>S: handle_command CMD_START myapp
+    S->>S: start_process fork+exec
+    S->>S: pm_unlock 解锁
+    S->>C: write 128字节响应包 ret=0 msg=started pid=1234
+    C->>C: recv_response 打印消息
+    C->>S: close
       </div>
     </div>
 
     <div class="key-points" style="margin-top:16px">
-      <div class="kp"><strong>为什么用固定长度协议</strong>无需解析分隔符，接收方知道精确读多少字节，简单可靠。read 循环 while(total &lt; LEN) 保证完整性</div>
+      <div class="kp"><strong>为什么用固定长度协议</strong>无需解析分隔符，接收方知道精确读多少字节，简单可靠。read 循环 while(total 小于 LEN) 保证完整性</div>
       <div class="kp warn"><strong>为什么用 Unix Domain Socket</strong>本地通信无需网络栈，比 TCP 更高效；文件权限可控制访问；路径即地址，无需绑定端口</div>
     </div>
   </div>
@@ -597,43 +480,40 @@ sequenceDiagram
     <div class="card-title"><span class="num">7</span>两线程交互与互斥锁</div>
     <div class="mermaid">
 sequenceDiagram
-    participant MT as 主线程 (IPC/epoll)
-    participant MU as pthread_mutex (lock)
-    participant MON as 监控线程 (monitor_loop)
+    participant MT as 主线程 IPC/epoll
+    participant MU as pthread_mutex lock
+    participant MON as 监控线程 monitor_loop
     participant PM as procs[] 数组
 
     Note over MT,MON: 正常运行阶段
 
     loop epoll 事件循环
-        MT->>MT: epoll_wait() 等待命令
-        MT->>MU: pm_lock()
+        MT->>MT: epoll_wait 等待命令
+        MT->>MU: pm_lock 加锁
         MU-->>MT: 获得锁
-        MT->>PM: 查找/修改进程状态\nstart/stop/restart
-        MT->>MU: pm_unlock()
+        MT->>PM: 查找/修改进程状态
+        MT->>MU: pm_unlock 解锁
     end
 
     loop 每秒轮询
-        MON->>MU: pm_lock()
+        MON->>MU: pm_lock 加锁
         MU-->>MON: 获得锁
-        MON->>PM: waitpid(WNOHANG)\n检测子进程状态
-        alt 进程正常退出
-            MON->>PM: restart_count++\n触发重启
-        else 进程被信号杀死
-            MON->>PM: handle_crash()
-            MON->>MU: pm_unlock() ← 临时释放！
+        MON->>PM: waitpid WNOHANG 检测子进程
+        alt 进程崩溃需要重启
+            MON->>MU: pm_unlock 临时释放锁
+            Note over MT,MON: sleep期间主线程可以处理命令
             MON->>MON: sleep(restart_delay)
-            Note over MT,MON: 此期间主线程可处理命令
-            MON->>MU: pm_lock() ← 重新加锁
-            MON->>PM: start_process()
+            MON->>MU: pm_lock 重新加锁
+            MON->>PM: start_process 重启
         end
-        MON->>MU: pm_unlock()
+        MON->>MU: pm_unlock 解锁
         MON->>MON: sleep(1)
     end
     </div>
     <div class="key-points" style="margin-top:16px">
       <div class="kp"><strong>为什么 sleep 前要临时释放锁</strong>sleep(delay) 可能等 3~5 秒，如果持锁睡觉，主线程处理 status/list 命令时会卡住，用户体验极差</div>
       <div class="kp warn"><strong>volatile int running</strong>编译器可能把变量缓存在寄存器。volatile 强制每次从内存读，保证信号处理函数写的 running=0 对主循环立即可见</div>
-      <div class="kp err"><strong>潜在问题</strong>临时释放锁后 sleep，再重新加锁时进程状态可能已被主线程修改。需注意重入问题</div>
+      <div class="kp err"><strong>注意</strong>临时释放锁后 sleep，再重新加锁时进程状态可能已被主线程修改，需注意重入问题</div>
     </div>
   </div>
 </div>
@@ -644,20 +524,20 @@ sequenceDiagram
     <div class="card-title"><span class="num">8</span>优雅退出流程</div>
     <div class="mermaid">
 flowchart TD
-    SIG["📨 kill -TERM 守护进程 PID\n或 Ctrl+C (SIGINT)"]
-    SIG --> H["signal_handler()\npm->running = 0\n⚡ 异步执行（volatile 保证可见）"]
+    SIG["kill -TERM 守护进程 PID\n或 Ctrl+C 发送 SIGINT"]
+    SIG --> H["signal_handler\npm→running = 0\n异步执行 volatile 保证可见"]
 
-    H --> MT["主线程：\nepoll_wait 返回 EINTR\n↓ continue\nwhile(running=0) 退出循环\nipc_event_loop 返回"]
-    H --> MON["监控线程：\nsleep(1) 结束\nwhile(running=0) 退出循环\nmonitor_loop 返回"]
+    H --> MT["主线程\nepoll_wait 返回 EINTR\ncontinue\nwhile running=0 退出循环\nipc_event_loop 返回"]
+    H --> MON["监控线程\nsleep 结束\nwhile running=0 退出循环\nmonitor_loop 返回"]
 
-    MT --> J["主线程：\npthread_join(monitor_tid)\n等监控线程彻底退出"]
+    MT --> J["主线程\npthread_join monitor_tid\n等监控线程彻底退出"]
     MON --> J
 
-    J --> C1["ipc_cleanup()\n关闭所有 client fd\n关闭 epoll_fd\n关闭 listen_fd\nunlink('/tmp/rkd.sock')"]
-    C1 --> C2["pm_cleanup()\npm_lock()\n对每个 running 子进程\n  stop_process()\n    SIGTERM → 等3s → SIGKILL\npm_unlock()\npthread_mutex_destroy()"]
-    C2 --> C3["remove_pid_file()\nunlink('/tmp/rkd.pid')"]
-    C3 --> C4["log_close()"]
-    C4 --> END(["return 0 ✅"])
+    J --> C1["ipc_cleanup\n关闭所有 client_fd\n关闭 epoll_fd\n关闭 listen_fd\nunlink /tmp/rkd.sock"]
+    C1 --> C2["pm_cleanup\npm_lock\n对每个运行中的子进程\n调用 stop_process\nSIGTERM 等3秒 SIGKILL\npm_unlock\npthread_mutex_destroy"]
+    C2 --> C3["remove_pid_file\nunlink /tmp/rkd.pid"]
+    C3 --> C4["log_close"]
+    C4 --> END(["return 0"])
 
     style SIG fill:#3d1a1a,stroke:#ff6b9d,color:#cdd6f4
     style H fill:#2a1f3d,stroke:#ff6b9d,color:#cdd6f4
@@ -666,8 +546,8 @@ flowchart TD
     </div>
     <div class="key-points" style="margin-top:16px">
       <div class="kp"><strong>SA_RESTART 不设置的原因</strong>设了 SA_RESTART，epoll_wait 被信号打断后自动重启，不返回 EINTR，running=0 不能被及时感知，退出延迟</div>
-      <div class="kp warn"><strong>为什么先 join 再 cleanup</strong>监控线程可能正在 start_process()，必须等它退出后再 pm_cleanup() 停止子进程，否则 procs[] 状态混乱</div>
-      <div class="kp"><strong>SIGCHLD 为什么用 SIG_DFL</strong>monitor_loop 用 waitpid 主动回收子进程。SIG_IGN 会导致某些场景下 waitpid 返回 ECHILD 异常，SIG_DFL 最安全</div>
+      <div class="kp warn"><strong>为什么先 join 再 cleanup</strong>监控线程可能正在 start_process，必须等它退出后再 pm_cleanup 停止子进程，否则 procs[] 状态混乱</div>
+      <div class="kp"><strong>SIGCHLD 为什么用 SIG_DFL</strong>monitor_loop 用 waitpid 主动回收子进程。SIG_IGN 会导致某些场景下 waitpid 返回 ECHILD 异常</div>
     </div>
   </div>
 </div>
@@ -677,99 +557,68 @@ flowchart TD
   <div class="card">
     <div class="card-title"><span class="num">9</span>面试高频问答（点击展开）</div>
     <div class="qa-list">
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q1. 守护进程为什么要 fork 两次？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q1. 守护进程为什么要 fork 两次？ <span class="arrow">▶</span></div>
         <div class="qa-a">
           第一次 <code>fork()</code> 让父进程退出，子进程调用 <code>setsid()</code> 创建新会话，脱离控制终端，成为会话组长。<br><br>
           但此时子进程是会话组长，如果它打开一个终端设备，内核会自动将其设置为控制终端——又重新有了终端。<br><br>
           第二次 <code>fork()</code> 让最终的守护进程不是会话组长，从根本上断绝了重新获取控制终端的可能。
         </div>
       </div>
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q2. 为什么不设置 SA_RESTART？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q2. 为什么不设置 SA_RESTART？ <span class="arrow">▶</span></div>
         <div class="qa-a">
           设了 <code>SA_RESTART</code>，被信号中断的系统调用会自动重新执行。信号处理函数设完 <code>running=0</code> 后，<code>epoll_wait</code> 不返回 <code>EINTR</code>，而是继续等待——主循环无法及时感知 <code>running=0</code>，退出被延迟。<br><br>
           不设 <code>SA_RESTART</code>：信号一来，<code>epoll_wait</code> 立刻返回 <code>EINTR</code>，下一次 while 判断 <code>running=0</code> 即刻退出，响应及时。
         </div>
       </div>
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q3. epoll 比 select/poll 好在哪里？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q3. epoll 比 select/poll 好在哪里？ <span class="arrow">▶</span></div>
         <div class="qa-a">
-          <strong>select/poll 的问题：</strong><br>
-          每次调用都把整个 fd 集合从用户态拷贝进内核，内核线性扫描所有 fd，O(n) 复杂度。<code>select</code> 还有 <code>FD_SETSIZE=1024</code> 的硬上限。<br><br>
-          <strong>epoll 的优势：</strong><br>
-          用 <code>epoll_ctl</code> 一次注册 fd，内核维护就绪链表。<code>epoll_wait</code> 只返回真正就绪的 fd，O(1) 复杂度，无 fd 数量上限。<br><br>
-          rkd 里客户端数最多 16 个，差距不明显，但这是工程上的正确选择。
+          <strong>select/poll 的问题：</strong>每次调用都把整个 fd 集合从用户态拷贝进内核，内核线性扫描所有 fd，O(n) 复杂度。<code>select</code> 还有 <code>FD_SETSIZE=1024</code> 的硬上限。<br><br>
+          <strong>epoll 的优势：</strong>用 <code>epoll_ctl</code> 一次注册 fd，内核维护就绪链表。<code>epoll_wait</code> 只返回真正就绪的 fd，O(1) 复杂度，无 fd 数量上限。
         </div>
       </div>
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q4. 为什么用 Unix Domain Socket 而不是 TCP？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q4. 为什么用 Unix Domain Socket 而不是 TCP？ <span class="arrow">▶</span></div>
         <div class="qa-a">
           rkd 和 rkctl 都在同一台机器上，没必要走网络协议栈。<br><br>
           • 性能：内核内存拷贝，无 TCP 握手、校验和、拥塞控制开销<br>
-          • 访问控制：socket 文件有文件权限，可以限制只有特定用户/组访问<br>
-          • 简单：路径即地址，无需管理 IP 和端口<br><br>
-          嵌入式 Linux 上本地 IPC 的标准方案。
+          • 访问控制：socket 文件有文件权限，可以限制只有特定用户访问<br>
+          • 简单：路径即地址，无需管理 IP 和端口
         </div>
       </div>
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q5. 怎么防止子进程变成僵尸进程？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q5. 怎么防止子进程变成僵尸进程？ <span class="arrow">▶</span></div>
         <div class="qa-a">
-          监控线程每秒调用 <code>waitpid(pid, &status, WNOHANG)</code> 轮询所有子进程。<br><br>
+          监控线程每秒调用 <code>waitpid(pid, &amp;status, WNOHANG)</code> 轮询所有子进程。<br><br>
           子进程一退出，其 PCB 中的退出状态立即被父进程用 <code>waitpid</code> 回收，内核释放 PCB，不会产生僵尸。<br><br>
-          <code>WNOHANG</code> 标志保证非阻塞：子进程未退出时立即返回 0，不影响监控线程继续运行。<br><br>
-          <code>SIGCHLD</code> 保持 <code>SIG_DFL</code> 而不是 <code>SIG_IGN</code>，避免某些情况下 <code>waitpid</code> 出现 <code>ECHILD</code> 异常。
+          <code>WNOHANG</code> 标志保证非阻塞：子进程未退出时立即返回 0，不影响监控线程继续运行。
         </div>
       </div>
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q6. 两个线程同时操作进程列表，如何保证线程安全？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q6. 两个线程同时操作进程列表，如何保证线程安全？ <span class="arrow">▶</span></div>
         <div class="qa-a">
-          <code>ProcManager</code> 里有一把 <code>pthread_mutex_t lock</code>。<br><br>
-          主线程处理 IPC 命令（start/stop/status）和监控线程跑 <code>waitpid</code> 循环，操作 <code>procs[]</code> 前都必须先 <code>pm_lock()</code>，用完立即 <code>pm_unlock()</code>。<br><br>
-          特殊处理：<code>handle_crash()</code> 在 <code>sleep(restart_delay)</code> 前临时 <code>pm_unlock()</code>，避免持锁 sleep 阻塞主线程响应命令，sleep 结束后重新加锁再 <code>start_process()</code>。
+          <code>ProcManager</code> 里有一把 <code>pthread_mutex_t lock</code>。主线程处理 IPC 命令和监控线程跑 <code>waitpid</code> 循环，操作 <code>procs[]</code> 前都必须先 <code>pm_lock()</code>，用完立即 <code>pm_unlock()</code>。<br><br>
+          特殊处理：<code>handle_crash()</code> 在 <code>sleep(restart_delay)</code> 前临时 <code>pm_unlock()</code>，避免持锁 sleep 阻塞主线程。
         </div>
       </div>
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q7. volatile 关键字在这里有什么作用？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q7. volatile 关键字在这里有什么作用？ <span class="arrow">▶</span></div>
         <div class="qa-a">
           <code>ProcManager.running</code> 声明为 <code>volatile int</code>。<br><br>
-          编译器优化可能把频繁访问的变量缓存在 CPU 寄存器里，主循环每次读的是寄存器旧值，感知不到信号处理函数对内存的修改。<br><br>
-          <code>volatile</code> 告诉编译器：每次读写都必须直接操作内存地址，不能使用缓存值。保证信号处理函数写的 <code>running=0</code> 对主循环立即可见。
+          编译器优化可能把频繁访问的变量缓存在 CPU 寄存器里，主循环每次读的是旧值，感知不到信号处理函数对内存的修改。<br><br>
+          <code>volatile</code> 告诉编译器：每次读写都必须直接操作内存地址，保证信号处理函数写的 <code>running=0</code> 对主循环立即可见。
         </div>
       </div>
-
       <div class="qa-item">
-        <div class="qa-q" onclick="toggleQA(this)">
-          Q8. fork 之后为什么子进程用 execvp 而不是 execl？ <span class="arrow">▶</span>
-        </div>
+        <div class="qa-q" onclick="toggleQA(this)">Q8. fork 之后为什么子进程用 execvp 而不是 execl？ <span class="arrow">▶</span></div>
         <div class="qa-a">
-          配置文件里的命令是字符串（如 <code>/usr/bin/myapp --config /etc/app.conf</code>），需要动态拆分参数，无法在编译时写死。<br><br>
-          <code>execvp</code> 接受 <code>char *argv[]</code> 数组，适合运行时构建参数列表（<code>build_argv()</code> 函数用 <code>strtok_r</code> 拆分）。<br><br>
+          配置文件里的命令是运行时读取的字符串，需要动态拆分参数，无法在编译时写死。<br><br>
+          <code>execvp</code> 接受 <code>char *argv[]</code> 数组，适合运行时构建参数列表（<code>build_argv()</code> 用 <code>strtok_r</code> 按空格拆分）。<br><br>
           <code>execvp</code> 中的 <code>p</code> 表示会搜索 <code>PATH</code> 环境变量，可以不写绝对路径直接用命令名（如 <code>nginx</code>）。
         </div>
       </div>
-
     </div>
   </div>
 
@@ -777,12 +626,12 @@ flowchart TD
     <div class="card-title"><span class="num">★</span>面试关键词速查</div>
     <div class="key-points">
       <div class="kp"><strong>守护进程化</strong>双重 fork · setsid() · umask(0) · chdir() · /dev/null</div>
-      <div class="kp"><strong>进程管理</strong>fork + exec · waitpid(WNOHANG) · SIGTERM→SIGKILL · 僵尸进程</div>
+      <div class="kp"><strong>进程管理</strong>fork + exec · waitpid(WNOHANG) · SIGTERM/SIGKILL · 僵尸进程</div>
       <div class="kp"><strong>IPC</strong>Unix Domain Socket · AF_UNIX · SOCK_STREAM · 固定长度二进制协议</div>
-      <div class="kp"><strong>事件驱动</strong>epoll_create1 · epoll_ctl · epoll_wait · EPOLLIN · 边沿/水平触发</div>
+      <div class="kp"><strong>事件驱动</strong>epoll_create1 · epoll_ctl · epoll_wait · EPOLLIN</div>
       <div class="kp warn"><strong>线程同步</strong>pthread_mutex_t · pm_lock/unlock · volatile · 临时释放锁</div>
       <div class="kp warn"><strong>信号处理</strong>sigaction · SA_RESTART · SIGTERM · SIGCHLD · SIG_DFL</div>
-      <div class="kp err"><strong>可靠读写</strong>循环 read/write 直到满 N 字节 · EINTR 处理 · partial write</div>
+      <div class="kp err"><strong>可靠读写</strong>循环 read/write 直到满 N 字节 · EINTR 处理</div>
     </div>
   </div>
 </div>
@@ -830,8 +679,7 @@ flowchart TD
 
   function toggleQA(el) {
     el.classList.toggle('open');
-    const ans = el.nextElementSibling;
-    ans.classList.toggle('show');
+    el.nextElementSibling.classList.toggle('show');
   }
 </script>
 </body>
